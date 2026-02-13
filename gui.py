@@ -45,6 +45,14 @@ class VehicleApp:
             command=self.add_vehicle
         ).grid(row=1, column=3, padx=10)
 
+# ===== TLAČÍTKO SMAZAT VOZIDLO =====
+        tk.Button(
+            form_frame,
+            text="Smazat vozidlo",
+            command=self.delete_vehicle
+        ).grid(row=2, column=0, columnspan=4, pady=5)
+
+
         # ===== TREEVIEW VOZIDLA =====
         self.tree = ttk.Treeview(
             self.root,
@@ -86,6 +94,15 @@ class VehicleApp:
             text="Přidat servis",
             command=self.add_service
         ).grid(row=1, column=3, padx=10)
+
+
+# =====  TLAČÍTKO SMAZAT SERVIS =====
+        tk.Button(
+            service_frame,
+            text="Smazat servis",
+            command=self.delete_service
+        ).grid(row=2, column=0, columnspan=4, pady=5)
+
 
         # ===== TREEVIEW SERVISY =====
         self.service_tree = ttk.Treeview(

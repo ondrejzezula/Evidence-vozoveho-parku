@@ -81,3 +81,37 @@ def get_services_by_vehicle(vozidlo_id):
     rows = cursor.fetchall()
     conn.close()
     return rows
+
+# =====  MAZÁNÍ VOZIDLA =====
+
+def delete_vehicle(vozidlo_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "DELETE FROM servisy WHERE vozidlo_id = ?",
+        (vozidlo_id,)
+    )
+
+    cursor.execute(
+        "DELETE FROM vozidla WHERE id = ?",
+        (vozidlo_id,)
+    )
+
+    conn.commit()
+    conn.close()
+
+
+# =====  MAZÁNÍ SERVISU =====
+
+def delete_service(service_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "DELETE FROM servisy WHERE id = ?",
+        (service_id,)
+    )
+
+    conn.commit()
+    conn.close()
