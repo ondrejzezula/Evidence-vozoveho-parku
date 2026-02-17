@@ -1,36 +1,34 @@
 # Evidence vozového parku
 
-Aplikace pro správu vozidel a jejich servisů s grafickým rozhraním a pokročilými statistikami nákladů.
+Aplikace pro správu vozidel a jejich servisů s grafickým rozhraním a modulem pro výpočet nákladů.
 
 ## Struktura projektu
 Kliknutím na název souboru se dostanete přímo ke kódu:
 
-* [**`main.py`**](./main.py) – Hlavní vstupní bod aplikace. Inicializuje databázi a spouští GUI.
-* [**`gui.py`**](./gui.py) – Definice uživatelského rozhraní (Tkinter).
-* [**`database.py`**](./database.py) – Správa SQLite databáze a SQL dotazy pro CRUD operace.
-* [**`stats.py`**](./stats.py) – (Nový) Modul pro výpočty nákladů a statistik z databáze.
-* [**`validators.py`**](./validators.py) – Logika pro kontrolu správnosti zadaných dat.
-* **`data/`** – Adresář obsahující soubor databáze `vozidla.db`.
+* [**`main.py`**](./main.py) – Hlavní vstupní bod aplikace. Inicializuje databázi a spouští uživatelské rozhraní.
+* [**`gui.py`**](./gui.py) – Definice grafického rozhraní (Tkinter) a obsluha tlačítek.
+* [**`database.py`**](./database.py) – Kompletní správa SQLite databáze a SQL dotazy.
+* [**`vypocty.py`**](./vypocty.py) – Modul pro analýzu dat (celkové náklady, průměry, filtrování období).
+* [**`validators.py`**](./validators.py) – Funkce pro kontrolu správnosti zadávaných údajů.
+* **`data/`** – Složka pro uložení databázového souboru `vozidla.db`.
+* **`__pycache__/`** – Systémová složka s kompilovanými soubory Pythonu (není třeba upravovat).
 
 ## Funkce
-* **Vozidla**: Evidence SPZ, značky a roku výroby.
-* **Servis**: Evidence servisních úkonů (datum, popis, cena) přiřazených k vozidlu.
-* **Validace**: Kontrola reálnosti roku výroby a povinných polí.
-* **Statistiky nákladů**: 
-    * Výpočet celkových nákladů celého vozového parku.
-    * Náklady na konkrétní vybrané vozidlo.
-    * Filtrování nákladů podle časového období (od-do).
-    * Výpočet průměrné ceny za jeden servisní úkon.
+* **Evidence vozidel**: Přidávání a mazání aut (SPZ, značka, rok výroby).
+* **Servisní historie**: Evidence konkrétních servisních úkonů ke každému vozu.
+* **Statistiky a výpočty**:
+    * Celkové náklady za celý vozový park.
+    * Součet nákladů pro konkrétní vozidlo.
+    * Průměrná cena jednoho servisu.
+    * Celkové náklady za zvolené časové období.
+* **Ochrana dat**: Validace vstupů (kontrola číselných hodnot a formátů dat).
 
-## Databázové tabulky
-Aplikace využívá dvě propojené tabulky v SQLite:
-
-1. **vozidla**: `id`, `spz`, `znacka`, `rok`
-2. **servisy**: `id`, `vozidlo_id`, `datum`, `popis`, `cena`
-
+## Databáze
+Aplikace využívá dvě tabulky:
+1. **vozidla**: (id, spz, znacka, rok)
+2. **servisy**: (id, vozidlo_id, datum, popis, cena)
 
 
-## 🚀 Instalace a spuštění
-1. Ujistěte se, že máte nainstalovaný Python 3.
-2. Stáhněte si soubory a zachovejte strukturu složek (databáze musí být v `/data`).
-3. Spusťte aplikaci.
+## Jak aplikaci spustit
+1. Ujistěte se, že máte v adresáři složku `data`.
+2. V terminálu/příkazovém řádku spusťte
